@@ -1,15 +1,27 @@
 /*
  *to hold a Reversi board
  */
+import java.util.Scanner;
 public class Reversi implements Board {
 	
-	public String[][] grid = new String[Board.rows][Board.cols];
+	protected String[][] grid = new String[Board.rows][Board.cols];
+	protected int userInput = 0;
 	
 	//intro
 	@Override
 	public void intro() {
 		System.out.println("\nWelcome to Reversi! Moves should be entered in \"[row] [column]\" format.");
 	}
+	@Override
+	public int menu() {
+		System.out.println("\n1. Player 1 vs CPU");
+		System.out.println("2. Player 1 vs Player 2");
+		System.out.print("Please choose 1 OR 2: ");
+		Scanner input = new Scanner(System.in);
+		this.userInput = input.nextInt();
+		return input.nextInt();
+	}
+	
 	//create grid OR board
 	@Override
 	public void grid() {
@@ -64,7 +76,21 @@ public class Reversi implements Board {
 	public static void main (String[] args) {
 		
 		Reversi board = new Reversi();
-		board.intro();
-		board.grid();
+		board.menu();
+		switch(args.length) {
+		
+		//player vs cpu
+		case 1:
+			board.intro();
+			board.grid();
+			
+		//player 1 vs player 2
+		case 2:
+			board.intro();
+			board.grid();
+			
+		default:
+			
+		}
 	}
 }
