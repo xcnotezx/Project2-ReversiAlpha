@@ -76,17 +76,16 @@ public class Reversi implements Board {
 	public static void main (String[] args) {
 		
 		Reversi board = new Reversi();
+		board.intro();
 		board.menu();
 		switch(args.length) {
 		
 		//player vs cpu
 		case 1:
-			board.intro();
 			board.grid();
 			
 		//player 1 vs player 2
 		case 2:
-			board.intro();
 			board.grid();
 			
 		default:
