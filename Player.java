@@ -1,18 +1,24 @@
 /*
- *represents a player of the game
+ *Represents a player of the game
  */
+
+package reversi;
+
 public abstract class Player {
-	//does not create objects AND/OR define methods
-	final String player1 = "dark";
-	final String player2 = "light";
-	private String gamePiece = "dark";
 	
-	//switch game piece
-	public void setGamePiece(String g) {
-		this.gamePiece = g;
-	}
-	//return game piece
-	public String getGamePiece() {
-		return this.gamePiece;
-	}
-}
+	/*
+	 * getter method for playerName variable
+	 * returns char playerName.
+	 */
+	public abstract char getPlayerName();
+	
+	/*
+	 * Method asks player object for their move and returns a string
+	 * containing move. Format for the string is that the string is
+	 * exactly 3 characters, has a char digit representing rows at
+	 * index 0, whitespace at index 1, and a char digit representing
+	 * columns at index 2.
+	 */
+	public abstract String getMove(reversiBoard b);
+	
+}//Player
