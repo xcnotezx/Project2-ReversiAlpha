@@ -3,11 +3,13 @@
  */
 public interface Board {
 	//interface does not define methods. implements will define the methods
-	final int row = 8;
-	final int col = 8;
+	final int rows = 8;
+	final int cols = 8;
 	
+	//intro
+	public void intro();
 	//create grid OR board
 	public void grid();
-	//check board for out of bounds
-	public boolean outOfBounds();
+	//is the cpu making legal moves
+	public boolean isMoveLegal(int row, int col, char move);
 }
