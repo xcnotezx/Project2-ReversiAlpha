@@ -8,8 +8,13 @@ public interface Board {
 	
 	//intro
 	public void intro();
+	
+	//menu: single OR 2 player game
+	public int menu();
+	
 	//create grid OR board
 	public void grid();
+	
 	//is the cpu making legal moves
 	public boolean isMoveLegal(int row, int col, char move);
 }
