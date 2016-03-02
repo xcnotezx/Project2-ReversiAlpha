@@ -1,0 +1,32 @@
+args = "humanplayer randomcomputerplayer"
+
+Player player1;
+Player player2;
+
+if(arg1.equalsIgnoreCase("humanplayer)){
+	player1 = new HumanPlayer('X')
+}
+else if(arg1.equalsIgnoreCase("randomcomputerplayer")){
+	player1 = new RandomComputerPlayer('X');
+}
+else if(arg1.equalsIgnoreCase("intelligentcomputerplayer")){
+	player1 = new IntelligentComputerPlayer('X');
+}
+else{
+	System.out.println("Invalid player names. The game will now exit");
+	System.exit(0);
+}
+
+if(arg2.equalsIgnoreCase("humanplayer")){
+	player2 = new HumanPlayer('Y');
+}
+else if(arg2.equalsIgnoreCase("randomcomputerplayer")){
+	player2 = new RandomComputerPlayer('Y');
+}
+else if(arg2.equalsIgnoreCase("intelligentcomputerplayer")){
+	player2 = new IntelligentComputerPlayer('Y');
+}
+else{
+	System.out.println("Invalid Player names. The game will now exit");
+	System.exit(0);
+}
