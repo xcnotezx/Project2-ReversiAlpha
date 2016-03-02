@@ -30,3 +30,8 @@ else{
 	System.out.println("Invalid Player names. The game will now exit");
 	System.exit(0);
 }
+
+
+Now we just have to parse the args so that we can get the substrings that we need as args1 and args2.
+And do the whole logic of the game thing. That should be tricky to determine exactly which tiles need to be changed
+and all that stuff.
