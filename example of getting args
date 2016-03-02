@@ -18,13 +18,13 @@ else{
 }
 
 if(arg2.equalsIgnoreCase("humanplayer")){
-	player2 = new HumanPlayer('Y');
+	player2 = new HumanPlayer('O');
 }
 else if(arg2.equalsIgnoreCase("randomcomputerplayer")){
-	player2 = new RandomComputerPlayer('Y');
+	player2 = new RandomComputerPlayer('O');
 }
 else if(arg2.equalsIgnoreCase("intelligentcomputerplayer")){
-	player2 = new IntelligentComputerPlayer('Y');
+	player2 = new IntelligentComputerPlayer('O');
 }
 else{
 	System.out.println("Invalid Player names. The game will now exit");
