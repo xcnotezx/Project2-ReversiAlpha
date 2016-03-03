@@ -13,10 +13,10 @@ public interface Board {
 	public abstract void board();
 	
 	//row input
-	public abstract String rowInput(String r);
+	public abstract int rowInput(String r);
 	
 	//col input
-	public abstract String colInput(String c);
+	public abstract int colInput(String c);
 	
 	//is the cpu making legal moves
 	public abstract boolean isLegalMove(int row, int col, char move);
