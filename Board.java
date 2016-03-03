@@ -12,6 +12,11 @@ public interface Board {
 	 * index of the last column of the game board.
 	 */
 	final int cols = 8;
+
+	/**
+	 * Turn on OR off game
+	 */
+	public abstract boolean power(boolean p);
 	
 	/**
 	 * Prints an introductory message for the game. The
