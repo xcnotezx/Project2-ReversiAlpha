@@ -1,10 +1,8 @@
-/*
- * extends the Player class and represents a human player
+/**
+ * Extends the Player class and represents a human player
  * of the game playing on the console. Said human player must
  * have a keyboard in order to play.
  */
-
-package reversi;
 
 import java.util.Scanner;
 
@@ -12,10 +10,22 @@ public class HumanPlayer extends Player {
 	
 	Scanner keyboard = new Scanner(System.in);
 	
-	//char of 'X' or 'O' representing player name
+	/**
+	 * Character representation of player's name. Should be only 'X'
+	 * or 'O'
+	 */
 	private char playerName;
 	
-	//Creates a new HumanPlayer object with a name of 'X' or 'O'
+	/**
+	 * Constructor of HumanPlayer class. Creates a new HumanPlayer object
+	 * with playerName set to be the character input. Input is not case
+	 * sensitive
+	 * 
+	 * @author		John Carolin
+	 * @author		Sinna Uy
+	 * @param	p	Character representing player name. Should be either 'X'
+	 * 				or 'O'.
+	 */
 	HumanPlayer(char p){
 				
 		if(p == 'X' || playerName == 'x'){
@@ -30,50 +40,73 @@ public class HumanPlayer extends Player {
 		}	
 	}//HumanPlayer(char p)
 	
-	//getter class for the playerName variable
+	/**
+	 * Returns the character representing the name of the player
+	 * 
+	 * @author	John Carolin
+	 * @author	Sinna Uy
+	 * @return	Character representing player name.
+	 */
 	public char getPlayerName(){
 		return playerName;
 	}//getPlayerName()
 	
-	/*
-	 * Asks the "command line" for a move and returns a string representation
-	 * of that move.
-	 * @return: 3 character string with digit representing row
-	 * at index 0, whitespace at index 1, and digit representing
-	 * column at index 2
+	/**
+	 * Returns a String object containing the move to be made by the player
+	 * 
+	 * @author		John Carolin
+	 * @author		Sinna Uy
+	 * @param	r	the Reversi object representing the game in progress
+	 * @return		3 character string with digit representing row
+	 *				at index 0, whitespace at index 1, and digit
+	 *				representing column at index 2. If no legal moves,
+	 *				returns empty string.
 	 */
-	public String getMove(reversiBoard b){
-		boolean isValidMove = false;
+	public String getMove(Reversi r){
+		boolean isValidAndLegal = false;
 		String input;
 		
-		do{
-			System.out.print("Enter your move, " + playerName + " player: ");
-			input = keyboard.nextLine();
-			if(input.length() == 3){
-				if(Character.isDigit(input.charAt(0)) && input.charAt(0) <= 8){
-					if(Character.isWhitespace(input.charAt(1))){
-						if(Character.isDigit(input.charAt(2)) && input.charAt(2) <= 8){
-							isValidMove = true;
+		this.findLegalMoves(r);
+		
+		if(this.getNumLegalMoves() == 0){
+			System.out.println("Player " + this.getPlayerName() + " has no legal moves. They forfeit their turn.");
+			return "";
+		}//if(numLegalMoves == 0)
+		else {
+			do{
+				System.out.print("Enter your move, " + playerName + " player: ");
+				input = keyboard.nextLine();
+				if(input.length() == 3){
+					if(Character.isDigit(input.charAt(0)) && input.charAt(0) <= 8){
+						if(Character.isWhitespace(input.charAt(1))){
+							if(Character.isDigit(input.charAt(2)) && input.charAt(2) <= 8){
+								if(r.isLegalMove(input.charAt(0), input.charAt(2), this.getPlayerName())){
+									isValidAndLegal = true;
+								}//Is valid input but illegal move
+								else {
+									System.out.println("Illegal move. Please try again.");
+								}//Is valid input but illegal move
+							}
+							else {
+								System.out.println("Invalid input. Please try again.");
+							}
 						}
 						else {
-							System.out.println("Invalid move. Please try again.");
+							System.out.println("Invalid input. Please try again.");
 						}
 					}
 					else {
-						System.out.println("Invalid move. Please try again.");
+						System.out.println("Invalid input. Please try again.");
 					}
 				}
 				else {
-					System.out.println("Invalid move. Please try again.");
+					System.out.println("Invalid input. Please try again.");
 				}
-			}
-			else {
-				System.out.println("Invalid move. Please try again.");
-			}
-		} while(isValidMove == false);
+			} while(isValidAndLegal == false);
+			
+			return input;
+		}//else
 		
-		return input;
-
 	}//getMove()
 
 }//HumanPlayer
