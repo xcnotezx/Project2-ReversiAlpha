@@ -7,14 +7,17 @@ public interface Board {
 	final int cols = 8;
 	
 	//intro
-	public void intro();
-	
-	//menu: single OR 2 player game
-	public int menu();
+	public abstract void intro();
 	
 	//create grid OR board
-	public void grid();
+	public abstract void board();
+	
+	//row input
+	public abstract String rowInput(String r);
+	
+	//col input
+	public abstract String colInput(String c);
 	
 	//is the cpu making legal moves
-	public boolean isMoveLegal(int row, int col, char move);
+	public abstract boolean isLegalMove(int row, int col, char move);
 }
