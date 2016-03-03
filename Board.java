@@ -23,7 +23,6 @@ public interface Board {
 	 */
 	public abstract void intro();
 	
-	//create grid OR board
 	/**
 	 * Constructs a new board object
 	 */
@@ -35,9 +34,9 @@ public interface Board {
 	 * of the row of the board specified
 	 * 
 	 * @param 	r	String in the format specified by the
-	 * 				getMove() method in the Player class
+	 * 			getMove() method in the Player class
 	 * @return		Returns an integer representation of
-	 * 				the row specified by the String input
+	 * 			the row specified by the String input
 	 */
 	public abstract int rowInput(String r);
 	
@@ -47,9 +46,9 @@ public interface Board {
 	 * of the row of the board specified
 	 * 
 	 * @param 	r	String in the format specified by the
-	 * 				getMove() method in the Player class
+	 * 			getMove() method in the Player class
 	 * @return		Returns an integer representation of
-	 * 				the row specified by the String input
+	 * 			the row specified by the String input
 	 */
 	public abstract int colInput(String c);
 	
@@ -60,7 +59,7 @@ public interface Board {
 	 * @param row	Row that the move is made to
 	 * @param col	Column that the move is made to
 	 * @param move	Player making the move
-	 * @return		True if move is legal, false otherwise
+	 * @return	True if move is legal, false otherwise
 	 */
 	public abstract boolean isLegalMove(int row, int col, char move);
 }
