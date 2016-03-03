@@ -1,23 +1,67 @@
-/*
- *defines operations of a game board
+/**
+ *Acts as an interface for a generic game board.
  */
+
 public interface Board {
-	//interface does not define methods. implements will define the methods
+	/**
+	 * index of the last row of the game board.
+	 */
 	final int rows = 8;
+	
+	/**
+	 * index of the last column of the game board.
+	 */
 	final int cols = 8;
 	
-	//intro
+	/**
+	 * Prints an introductory message for the game. The
+	 * message is unique to the game that is being
+	 * played
+	 * 
+	 * @author	John Carolin
+	 * @author	Sinna Uy
+	 */
 	public abstract void intro();
 	
 	//create grid OR board
+	/**
+	 * Constructs a new board object
+	 */
 	public abstract void board();
 	
-	//row input
+	/**
+	 * Parses a string in the format specified in the
+	 * Player class and returns an integer representation
+	 * of the row of the board specified
+	 * 
+	 * @param 	r	String in the format specified by the
+	 * 				getMove() method in the Player class
+	 * @return		Returns an integer representation of
+	 * 				the row specified by the String input
+	 */
 	public abstract int rowInput(String r);
 	
-	//col input
+	/**
+	 * Parses a string in the format specified in the
+	 * Player class and returns an integer representation
+	 * of the row of the board specified
+	 * 
+	 * @param 	r	String in the format specified by the
+	 * 				getMove() method in the Player class
+	 * @return		Returns an integer representation of
+	 * 				the row specified by the String input
+	 */
 	public abstract int colInput(String c);
 	
-	//is the cpu making legal moves
+	/**
+	 * Checks to see if the specified player is making a legal
+	 * move. Returns true if they are and false if not.
+	 * 
+	 * @param row	Row that the move is made to
+	 * @param col	Column that the move is made to
+	 * @param move	Player making the move
+	 * @return		True if move is legal, false otherwise
+	 */
 	public abstract boolean isLegalMove(int row, int col, char move);
 }
+
