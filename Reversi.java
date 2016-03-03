@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Reversi implements Board {
 	
 	protected String[][] grid = new String[Board.rows][Board.cols];
-	protected String rowInput = "";
-	protected String colInput = "";
+	protected int rowInput = 0;
+	protected int colInput = 0;
 	
 	//intro
 	@Override
@@ -19,7 +19,7 @@ public class Reversi implements Board {
 	public void board() {
 		
 		//String temp = "";
-		int rounds = 0;
+		int turns = 0;
 		this.grid = new String[Board.rows][Board.cols];
 		int numRow = 1;
     	//COL OF NUMBERS
@@ -46,11 +46,11 @@ public class Reversi implements Board {
 		    			System.out.print(this.grid[gridRows][gridCols]);
 		    		}
 		    		//PLAYER OR CPU MOVE
-		    		else if((gridRows == 2 && gridCols == 3) || (gridRows == 5 && gridCols == 2)) {
+		    		else if((gridRows == 2 && gridCols == 3) || (gridRows == 3 && gridCols == 4) || (gridRows == 5 && gridCols == 2) || (gridRows == 4 && gridCols == 1)) {
 		    			this.grid[gridRows][gridCols] = " _";
 		    			System.out.print(this.grid[gridRows][gridCols]);
 		    		}
-		    		else if(rounds == 0) {
+		    		else {
 		    			this.grid[gridRows][gridCols] = " .";
 		    			System.out.print(this.grid[gridRows][gridCols]);
 		    		}
@@ -61,14 +61,14 @@ public class Reversi implements Board {
 	}
 	//row input
 	@Override
-	public String rowInput(String r) {
-		this.rowInput = r.substring(0,1);
+	public int rowInput(String r) {
+		this.rowInput = Integer.parseInt(r.substring(0,1));
 		return this.rowInput;
 	}
 	//col input
 	@Override
-	public String colInput(String c) {
-		this.colInput = c.substring(2);
+	public int colInput(String c) {
+		this.colInput = Integer.parseInt(c.substring(2));
 		return this.colInput;
 	}
 	
