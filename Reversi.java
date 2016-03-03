@@ -5,32 +5,24 @@ import java.util.Scanner;
 public class Reversi implements Board {
 	
 	protected String[][] grid = new String[Board.rows][Board.cols];
-	protected int userInput = 0;
+	protected String rowInput = "";
+	protected String colInput = "";
 	
 	//intro
 	@Override
 	public void intro() {
-		System.out.println("\nWelcome to Reversi! Moves should be entered in \"[row] [column]\" format.");
-	}
-	@Override
-	public int menu() {
-		System.out.println("\n1. Player 1 vs CPU");
-		System.out.println("2. Player 1 vs Player 2");
-		System.out.print("Please choose 1 OR 2: ");
-		Scanner input = new Scanner(System.in);
-		this.userInput = input.nextInt();
-		return input.nextInt();
+		System.out.println("\nWelcome to Reversi! Moves should be entered in \"[row] [column]\" format.\n");
 	}
 	
 	//create grid OR board
 	@Override
-	public void grid() {
+	public void board() {
 		
 		//String temp = "";
 		int rounds = 0;
 		this.grid = new String[Board.rows][Board.cols];
 		int numRow = 1;
-    	int numCol = 1;
+    	//COL OF NUMBERS
     	System.out.println("  1 2 3 4 5 6 7 8");
 		for(int gridRows = 0; gridRows < Board.rows; gridRows++) {
 		    for(int gridCols = 0; gridCols < Board.cols; gridCols++) {
@@ -44,7 +36,7 @@ public class Reversi implements Board {
 			    System.out.println("");
 		    	}
 		    	else {
-		    		//COL OF NUMBERS
+		    		//BOARD CHANGES
 		    		if((gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
 		    			this.grid[gridRows][gridCols] = " X";
 		    			System.out.print(this.grid[gridRows][gridCols]);
@@ -65,31 +57,68 @@ public class Reversi implements Board {
 		    	}
 		    }
 		}
+		
 	}
+	//row input
+	@Override
+	public String rowInput(String r) {
+		this.rowInput = r.substring(0,1);
+		return this.rowInput;
+	}
+	//col input
+	@Override
+	public String colInput(String c) {
+		this.colInput = c.substring(2);
+		return this.colInput;
+	}
+	
 	//is the cpu making legal moves
 	@Override
-	public boolean isMoveLegal(int row, int col, char move) {
+	public boolean isLegalMove(int row, int col, char move) {
 		boolean isMoveLegal = true;
 		return isMoveLegal;
 	}
 	
 	public static void main (String[] args) {
 		
-		Reversi board = new Reversi();
-		board.intro();
-		board.menu();
-		switch(args.length) {
+		Reversi game = new Reversi();
+		game.intro();
+		game.board();
+		//PLAYER 1
+		if(args[0].equalsIgnoreCase("Human")) {
+			Player humanPlayer = new HumanPlayer('X');
+			String userInput = humanPlayer.getMove(game);
+			game.rowInput(userInput);
+			game.colInput(userInput);
+		}
+		else if(args[0].equalsIgnoreCase("RandomComputerPlayer")) {
+			Player randomComputerPlayer = new RandomComputerPlayer('X');
+		}
+		else if(args[0].equalsIgnoreCase("IntelligentComputerPlayer")) {
+			//Player intelligentComputerPlayer = new IntelligentComputerPlayer('X');
+		}
+		else {
+			System.out.println("Usage: java Reversi [PLAYER1] [PLAYER2]");
+			System.exit(0);
+		}
 		
-		//player vs cpu
-		case 1:
-			board.grid();
-			
-		//player 1 vs player 2
-		case 2:
-			board.grid();
-			
-		default:
-			
+		game.board();
+		//PLAYER 2
+		if(args[1].equalsIgnoreCase("Human")) {
+			Player humanPlayer = new HumanPlayer('O');
+			String userInput = humanPlayer.getMove(game);
+			game.rowInput(userInput);
+			game.colInput(userInput);
+		}
+		else if(args[1].equalsIgnoreCase("RandomComputerPlayer")) {
+			Player randomComputerPlayer = new RandomComputerPlayer('O');
+		}
+		else if(args[1].equalsIgnoreCase("IntelligentComputerPlayer")) {
+			//Player intelligentComputerPlayer = new IntelligentComputerPlayer('X');
+		}
+		else {
+			System.out.println("Usage: java Reversi [PLAYER1] [PLAYER2]");
+			System.exit(0);
 		}
 	}
 }
