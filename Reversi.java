@@ -20,7 +20,6 @@ public class Reversi implements Board {
 		return this.power;
 	}
 	
-	
 	//intro
 	@Override
 	public void intro() {
@@ -30,8 +29,6 @@ public class Reversi implements Board {
 	//create grid OR board
 	@Override
 	public void board() {
-		
-		
 		this.grid = new String[Board.rows][Board.cols];
 		int numRow = 1;
 		//FORFEIT TURN
@@ -436,7 +433,6 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    	
 		    	}
 		    }
 		}
@@ -479,7 +475,7 @@ public class Reversi implements Board {
 		Reversi game = new Reversi();
 		game.intro();
 		game.board();
-		//while(game.power(true)) {
+		while(game.power(true)) {
 			//PLAYER 1
 			if(args[0].equalsIgnoreCase("Human")) {
 				Player humanPlayer = new HumanPlayer('X');
@@ -517,6 +513,6 @@ public class Reversi implements Board {
 				System.exit(0);
 			}
 			game.board();
-		//}
+		}
 	}
 }
