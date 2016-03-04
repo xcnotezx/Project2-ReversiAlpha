@@ -30,7 +30,8 @@ sensitive. Any improper formatting of input will result in the game presenting a
 error message and exiting.
 
 
-To play the game as a computer player, follow the instructions on the screen. 
+To play the game as a computer player, follow the instructions on the screen. Player 'X'
+plays first
 
 
 Known errors:
