@@ -5,8 +5,12 @@
  * don't make illegal moves.
  */
 
+import java.util.Random;
+
 public class RandomComputerPlayer extends ComputerPlayer {
 		
+	Random generator = new Random();
+	
 	/**
 	 * Character representation of player's name. Should be only 'X'
 	 * or 'O'
@@ -44,6 +48,7 @@ public class RandomComputerPlayer extends ComputerPlayer {
 	 * @author	Sinna Uy
 	 * @return	Character representation of player's name
 	 */
+	@Override
 	public char getPlayerName(){
 		return playerName;
 	}//getPlayerName()
@@ -59,6 +64,7 @@ public class RandomComputerPlayer extends ComputerPlayer {
 	 *				representing column at index 2. If no legal moves,
 	 *				returns empty string.
 	 */
+	@Override
 	public String getMove(Reversi r){
 		this.findLegalMoves(r);
 		
@@ -67,9 +73,13 @@ public class RandomComputerPlayer extends ComputerPlayer {
 			return "";
 		}//if no legal moves
 		else {
-			int moveNumber = (int)(Math.random() * this.getNumLegalMoves()) + 1;		
 			
+			
+			int moveNumber = generator.nextInt(this.getNumLegalMoves()) + 1;
+						
 			String move = this.getLegalMoves().substring(((moveNumber -1) * 4), (moveNumber * 4) - 1);
+			
+			System.out.println("\nRandom Computer Player " + this.getPlayerName() + " moves: " + move);
 			
 			return move;
 		}//else
