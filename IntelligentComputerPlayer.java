@@ -9,7 +9,11 @@
  * from among those squares.
  */
 
+import java.util.Random;
+
 public class IntelligentComputerPlayer extends ComputerPlayer {
+	
+	Random generator = new Random();
 	
 	/**
 	 * Character representation of player's name
@@ -47,6 +51,7 @@ public class IntelligentComputerPlayer extends ComputerPlayer {
 	 * @author	Sinna Uy
 	 * @return	Character representation of player's name
 	 */
+	@Override
 	public char getPlayerName(){
 		return playerName;
 	}//getPlayerName()
@@ -59,7 +64,9 @@ public class IntelligentComputerPlayer extends ComputerPlayer {
 	 * as corners or edge squares are determined to be more
 	 * valuable than others, such as interior squares. If multiple
 	 * moves have the same value, then the move is chosen randomly
-	 * among all squares sharing that higher value.
+	 * among all squares sharing that higher value. Additional
+	 * information can be found in the documentation of this
+	 * program.
 	 * 
 	 * @author		John Carolin
 	 * @author		Sinna Uy
@@ -69,12 +76,13 @@ public class IntelligentComputerPlayer extends ComputerPlayer {
 	 *				at index 0, whitespace at index 1, and digit
 	 *				representing column at index 2
 	 */
+	@Override
 	public String getMove(Reversi r){
 		int bestMove = 0;
 		int numBestMoves = 0;
 		int moveNumber;
 		String bestMoves = "";
-		String legal = this.findLegalMoves(r);
+		String legalMoves = this.findLegalMoves(r);
 		String move = "";
 		if(this.getNumLegalMoves() == 0) {
 			System.out.println("Player " + this.getPlayerName() + " has no legal moves. They forfeit their turn.");
@@ -84,21 +92,21 @@ public class IntelligentComputerPlayer extends ComputerPlayer {
 			int[] moveScores = new int[this.getNumLegalMoves()];
 			
 			for(int i = 0; i < moveScores.length; i++){
-				if((legal.charAt(i*4) == 1 && legal.charAt((i*4) + 2) == 1) || (legal.charAt(i*4) == 8 && legal.charAt((i*4) + 2) == 1) || (legal.charAt(i*4) == 1 && legal.charAt((i*4) + 2) == 8) || (legal.charAt(i*4) == 8 && legal.charAt((i*4) + 2) == 8)){
+				if((legalMoves.charAt(i*4) == 49 && legalMoves.charAt((i*4) + 2) == 49) || (legalMoves.charAt(i*4) == 56 && legalMoves.charAt((i*4) + 2) == 49) || (legalMoves.charAt(i*4) == 49 && legalMoves.charAt((i*4) + 2) == 56) || (legalMoves.charAt(i*4) == 56 && legalMoves.charAt((i*4) + 2) == 56)){ //If corner
 					moveScores[i] = 4;
-				}//if corner
-				else if(legal.charAt(i*4) == 1 || legal.charAt(i*4) == 8 || legal.charAt((i*4) + 2) == 1 || legal.charAt((i*4) + 2) == 8){
+				}//if corner(1 1, 1 8, 8 1, 8 8)
+				else if(legalMoves.charAt(i*4) == 49 || legalMoves.charAt(i*4) == 56 || legalMoves.charAt((i*4) + 2) == 49 || legalMoves.charAt((i*4) + 2) == 56){ //If edge
 					moveScores[i] = 3;
-				}//else if edge
-				else if(legal.charAt(i*4) == 2 || legal.charAt(i*4) == 7 || legal.charAt((i*4) + 2) == 2 || legal.charAt((i*4) + 2) == 7){
+				}//else if edge(row/col 1/8)
+				else if(legalMoves.charAt(i*4) == 50 || legalMoves.charAt(i*4) == 55 || legalMoves.charAt((i*4) + 2) == 50 || legalMoves.charAt((i*4) + 2) == 55){ //If 7/2
 					moveScores[i] = 2;
-				}//else if row/col 2 or 7
-				else if(legal.charAt(i*4) == 3 || legal.charAt(i*4) == 6 || legal.charAt((i*4) + 2) == 3 || legal.charAt((i*4) + 2) == 6){
+				}//else if row/col 2/7
+				else if(legalMoves.charAt(i*4) == 51 || legalMoves.charAt(i*4) == 54 || legalMoves.charAt((i*4) + 2) == 51 || legalMoves.charAt((i*4) + 2) == 54){ //If 3/6
 					moveScores[i] = 1;
-				}//else if row/col 3 or 6
-				else {
+				}//else if row/col 3/6
+				else { //If 4/5 or otherwise
 					moveScores[i] = 0;
-				}//else if row/col 4 or 5 or unknown
+				}//else if row/col 4/5 or unknown
 			}//for
 			
 			for(int i = 0; i < moveScores.length; i++){
@@ -111,15 +119,17 @@ public class IntelligentComputerPlayer extends ComputerPlayer {
 			
 			for(int i = 0; i < moveScores.length; i++){
 				if(moveScores[i] == bestMove){
-					bestMoves = bestMoves.concat(legal.substring((i*4), ((i*4) + 4)));
+					bestMoves = bestMoves.concat(legalMoves.substring((i*4), ((i*4) + 4)));
 				}//if best move, concatenate to bestMoves
 			}//for find bestMoves
 			
 			numBestMoves = (bestMoves.length() / 4);
 			
-			moveNumber = (int)(Math.random() * numBestMoves) + 1;
+			moveNumber = generator.nextInt(numBestMoves) + 1;
 			
 			move = bestMoves.substring(((moveNumber -1) * 4), (moveNumber * 4) - 1);
+			
+			System.out.println("\nIntelligent Computer Player " + this.getPlayerName() + " moves: " + move);
 			
 			return move;
 		}//else
