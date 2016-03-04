@@ -76,32 +76,32 @@ public class HumanPlayer extends Player {
 			do{
 				System.out.print("Enter your move, " + playerName + " player: ");
 				input = keyboard.nextLine();
-				if(input.length() == 3){
-					if(Character.isDigit(input.charAt(0)) && input.charAt(0) <= 8){
-						if(Character.isWhitespace(input.charAt(1))){
-							if(Character.isDigit(input.charAt(2)) && input.charAt(2) <= 8){
-								if(r.isLegalMove(input.charAt(0), input.charAt(2), this.getPlayerName())){
+				if(input.length() == 3){ //Check Length
+					if(Character.isDigit(input.charAt(0)) && input.charAt(0) >=  49 && input.charAt(0) <= 56 ){ //Check charAt(0)
+						if(Character.isWhitespace(input.charAt(1))){ //Check charAt(1)
+							if(Character.isDigit(input.charAt(2)) && input.charAt(2) >= 49 && input.charAt(2) <= 56){ //Check charAt(2)
+								if(r.isLegalMove(input.charAt(0), input.charAt(2), this.getPlayerName())){ //Check move legality
 									isValidAndLegal = true;
-								}//Is valid input but illegal move
+								}
 								else {
 									System.out.println("Illegal move. Please try again.");
-								}//Is valid input but illegal move
+								}//Check move legality
 							}
 							else {
-								System.out.println("Invalid input. Please try again.");
-							}
+								System.out.println("Invalid input. Third Character is " + input.charAt(2) + ". Please try again.");
+							}//Check charAt(2)
 						}
 						else {
-							System.out.println("Invalid input. Please try again.");
-						}
+							System.out.println("Invalid input. Second character is " + input.charAt(1) + ". Please try again.");
+						}//Check charAt(1)
 					}
 					else {
-						System.out.println("Invalid input. Please try again.");
-					}
+						System.out.println("Invalid input. First character is" + input.charAt(0) + ". Please try again.");
+					}//Check charAt(0)
 				}
 				else {
-					System.out.println("Invalid input. Please try again.");
-				}
+					System.out.println("Invalid input. Input is " + input.length() + " long. Please try again.");
+				}//Check Length
 			} while(isValidAndLegal == false);
 			
 			return input;
@@ -110,3 +110,4 @@ public class HumanPlayer extends Player {
 	}//getMove()
 
 }//HumanPlayer
+
