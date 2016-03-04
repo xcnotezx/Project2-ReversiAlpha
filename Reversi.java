@@ -7,6 +7,8 @@ public class Reversi implements Board {
 	protected String[][] grid = new String[Board.rows][Board.cols];
 	protected int rowInput = 0;
 	protected int colInput = 0;
+	protected int boardRow = 0;
+	protected int boardCol = 0;
 	protected int turns = 0;
 	protected boolean power = false;
 	protected int level = 1;
@@ -73,6 +75,8 @@ public class Reversi implements Board {
 			    System.out.println("");
 		    	}
 		    	else {
+		    		this.boardRow = gridRows;
+		    		this.boardCol = gridCols;
 		    		//INTIAL PIECES
 		    		if(this.turns == 0) {
 			    		if((gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
