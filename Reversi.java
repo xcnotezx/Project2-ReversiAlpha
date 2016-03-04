@@ -9,7 +9,7 @@ public class Reversi implements Board {
 	protected int colInput = 0;
 	protected int turns = 0;
 	protected boolean power = false;
-	protected int gameType = 1;
+	protected int level = 1;
 	
 	/**
 	 * Turn on OR off game
@@ -94,7 +94,7 @@ public class Reversi implements Board {
 			    		}
 		    		}
 		    		//AFTER 2ND TURN
-		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 4) && gameType == 1) {
+		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 4) && level == 1) {
 		    			if(gridRows == 2 && gridCols == 2) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -116,7 +116,117 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 6) && gameType == 1) {
+		    		else if(this.turns >= 3 && (rowInput == 2 && colInput == 3) && level == 1) {
+		    			if(gridRows == 1 && gridCols == 1) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 2 && gridCols == 2) || (gridRows == 2 && gridCols == 3) || (gridRows == 3 && gridCols == 3) || (gridRows == 4 && gridCols == 3)) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 2)) {
+		    				this.grid[gridRows][gridCols] = " O";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 1 && gridCols == 2) || (gridRows == 1 && gridCols == 4) || (gridRows == 2 && gridCols == 4) || (gridRows == 3 && gridCols == 4) || (gridRows == 4 && gridCols == 4) || (gridRows == 5 && gridCols == 4)) {
+		    				this.grid[gridRows][gridCols] = " _";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else {
+			    			this.grid[gridRows][gridCols] = " .";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+			    		}
+		    		}
+		    		else if(this.turns >= 3 && (rowInput == 3 && colInput == 3) && level == 1) {
+		    			if(gridRows == 2 && gridCols == 1) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 2 && gridCols == 2) || (gridRows == 2 && gridCols == 3) || (gridRows == 3 && gridCols == 2) || (gridRows == 3 && gridCols == 3) || (gridRows == 4 && gridCols == 3)) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 4 && gridCols == 2)) {
+		    				this.grid[gridRows][gridCols] = " O";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 1 && gridCols == 2) || (gridRows == 2 && gridCols == 4) || (gridRows == 4 && gridCols == 4)) {
+		    				this.grid[gridRows][gridCols] = " _";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else {
+			    			this.grid[gridRows][gridCols] = " .";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+			    		}
+		    		}
+		    		else if(this.turns >= 3 && (rowInput == 4 && colInput == 3) && level == 1) {
+		    			if(gridRows == 3 && gridCols == 1) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 3 && gridCols == 3) || (gridRows == 2 && gridCols == 3) || (gridRows == 4 && gridCols == 3)) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 2 && gridCols == 2) || (gridRows == 4 && gridCols == 2)) {
+		    				this.grid[gridRows][gridCols] = " O";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 2 && gridCols == 0) || (gridRows == 4 && gridCols == 0) || (gridRows == 2 && gridCols == 4) || (gridRows == 4 && gridCols == 4)) {
+		    				this.grid[gridRows][gridCols] = " _";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else {
+			    			this.grid[gridRows][gridCols] = " .";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+			    		}
+		    		}
+		    		else if(this.turns >= 3 && (rowInput == 5 && colInput == 3) && level == 1) {
+		    			if(gridRows == 4 && gridCols == 1) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 4 && gridCols == 2) || (gridRows == 4 && gridCols == 3) || (gridRows == 3 && gridCols == 2) || (gridRows == 3 && gridCols == 3) || (gridRows == 2 && gridCols == 3)) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if(gridRows == 2 && gridCols == 2) {
+		    				this.grid[gridRows][gridCols] = " O";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 5 && gridCols == 2) || (gridRows == 4 && gridCols == 4) || (gridRows == 2 && gridCols == 4)) {
+		    				this.grid[gridRows][gridCols] = " _";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else {
+			    			this.grid[gridRows][gridCols] = " .";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+			    		}
+		    		}
+		    		else if(this.turns >= 3 && (rowInput == 6 && colInput == 3) && level == 1) {
+		    			if(gridRows == 5 && gridCols == 1) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 4 && gridCols == 2) || (gridRows == 4 && gridCols == 3) || (gridRows == 3 && gridCols == 3) || (gridRows == 2 && gridCols == 3)) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 2 && gridCols == 2)) {
+		    				this.grid[gridRows][gridCols] = " O";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 5 && gridCols == 2) || (gridRows == 5 && gridCols == 4) || (gridRows == 4 && gridCols == 4) || (gridRows == 3 && gridCols == 4) || (gridRows == 2 && gridCols == 4) || (gridRows == 1 && gridCols == 4)) {
+		    				this.grid[gridRows][gridCols] = " _";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else {
+			    			this.grid[gridRows][gridCols] = " .";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+			    		}
+		    		}
+		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 6) && level == 1) {
 		    			if(gridRows == 2 && gridCols == 4) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -138,7 +248,29 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 5 && colInput == 6) && gameType == 1) {
+		    		else if(this.turns >= 3 && (rowInput == 3 && colInput == 7) && level == 1) {
+		    			if(gridRows == 2 && gridCols == 5) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 2 && gridCols == 4) || (gridRows == 2 && gridCols == 3) || (gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
+		    				this.grid[gridRows][gridCols] = " X";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 3 && gridCols == 3) || (gridRows == 4 && gridCols == 2)) {
+		    				this.grid[gridRows][gridCols] = " O";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 1 && gridCols == 5) || (gridRows == 1 && gridCols == 3) || (gridRows == 2 && gridCols == 2) || (gridRows == 3 && gridCols == 1) || (gridRows == 5 && gridCols == 3) || (gridRows == 4 && gridCols == 4)) {
+		    				this.grid[gridRows][gridCols] = " _";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else {
+			    			this.grid[gridRows][gridCols] = " .";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+			    		}
+		    		}
+		    		else if(this.turns >= 2 && (rowInput == 5 && colInput == 6) && level == 1) {
 		    			if(gridRows == 4 && gridCols == 4) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -161,8 +293,8 @@ public class Reversi implements Board {
 			    		}
 		    		}
 		    		//AFTER 1ST TURN
-		    		if(this.turns >= 1 && (rowInput == 4 && colInput == 6)) {
-		    			gameType = 2;
+		    		else if(this.turns >= 1 && (rowInput == 4 && colInput == 6)) {
+		    			level = 2;
 		    			if((gridRows == 3 && gridCols == 4)) {
 			    			this.grid[gridRows][gridCols] = " X";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -185,7 +317,7 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 4) && gameType == 2) {
+		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 4) && level == 2) {
 		    			if(gridRows == 2 && gridCols == 2) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -207,7 +339,7 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 6) && gameType == 2) {
+		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 6) && level == 2) {
 		    			if(gridRows == 2 && gridCols == 4) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -229,7 +361,7 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 5 && colInput == 6) && gameType == 2) {
+		    		else if(this.turns >= 2 && (rowInput == 5 && colInput == 6) && level == 2) {
 		    			if(gridRows == 4 && gridCols == 4) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -252,8 +384,8 @@ public class Reversi implements Board {
 			    		}
 		    		}
 		    		//AFTER 1ST TURN
-		    		if(this.turns >= 1 && (rowInput == 5 && colInput == 3)) {
-		    			gameType = 3;
+		    		else if(this.turns >= 1 && (rowInput == 5 && colInput == 3)) {
+		    			level = 3;
 		    			if(gridRows == 4 && gridCols == 1) {
 		    				this.grid[gridRows][gridCols] = " X";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -276,7 +408,7 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 4 && colInput == 3) && gameType == 3) {
+		    		else if(this.turns >= 2 && (rowInput == 4 && colInput == 3) && level == 3) {
 		    			if(gridRows == 3 && gridCols == 1) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -298,7 +430,7 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 3) && gameType == 3) {
+		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 3) && level == 3) {
 		    			if(gridRows == 5 && gridCols == 1) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -320,7 +452,7 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 5) && gameType == 3) {
+		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 5) && level == 3) {
 		    			if(gridRows == 5 && gridCols == 3) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -343,8 +475,8 @@ public class Reversi implements Board {
 			    		}
 		    		}
 		    		//AFTER 1ST TURN
-		    		if(this.turns >= 1 && (rowInput == 6 && colInput == 4)) {
-		    			gameType = 4;
+		    		else if(this.turns >= 1 && (rowInput == 6 && colInput == 4)) {
+		    			level = 4;
 		    			if(gridRows == 5 && gridCols == 2) {
 		    				this.grid[gridRows][gridCols] = " X";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -367,7 +499,7 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 4 && colInput == 3) && gameType == 4) {
+		    		else if(this.turns >= 2 && (rowInput == 4 && colInput == 3) && level == 4) {
 		    			if(gridRows == 3 && gridCols == 1) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -389,7 +521,7 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 3) && gameType == 4) {
+		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 3) && level == 4) {
 		    			if(gridRows == 5 && gridCols == 1) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
@@ -411,7 +543,7 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    		}
-		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 5) && gameType == 4) {
+		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 5) && level == 4) {
 		    			if(gridRows == 5 && gridCols == 3) {
 		    				this.grid[gridRows][gridCols] = " O";
 			    			System.out.print(this.grid[gridRows][gridCols]);
