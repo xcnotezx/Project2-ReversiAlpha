@@ -683,62 +683,60 @@ public class Reversi implements Board {
 	 * Executes the Reversi game in the console. Arguments determine
 	 * which players are playing in the given game.
 	 * @param args	String array of which players are playing in the
-	 * 				game. Two inputs are expected. Valid inputs are
-	 * 				"Human", "RandomComputerPlayer", and
-	 * 				"IntelligentComputerPlayer". Inputs are not case
-	 * 				sensitive.
+	 * 		game. Two inputs are expected. Valid inputs are
+	 * 		"Human", "RandomComputerPlayer", and
+	 * 		"IntelligentComputerPlayer". Inputs are not case
+	 * 		sensitive.
 	 */
 	public static void main (String[] args) {
 		
 		Reversi game = new Reversi();
 		game.intro();
 		game.board();
+		Player player1;
+		Player player2;
+		
+		if(args[0].equalsIgnoreCase("Human")){
+			player1 = new HumanPlayer('X');
+		}
+		else if(args[0].equalsIgnoreCase("RandomComputerPlayer")){
+			player1 = new RandomComputerPlayer('X');
+		}
+		else if(args[0].equalsIgnoreCase("IntelligentComputerPlayer")){
+			player1 = new IntelligentComputerPlayer('X');
+		}
+		else{
+			player1 = new HumanPlayer('X');
+			System.out.println("Invalid input for player1 type. Options are \"Human\", \"RandomComputerPlayer\", and \"IntelligentComputerPlayer\".");
+		}
+		
+		if(args[1].equalsIgnoreCase("Human")){
+			player2 = new HumanPlayer('O');
+		}
+		else if(args[1].equalsIgnoreCase("RandomComputerPlayer")){
+			player2 = new RandomComputerPlayer('O');
+		}
+		else if(args[1].equalsIgnoreCase("IntelligentComputerPlayer")){
+			player2 = new IntelligentComputerPlayer('O');
+		}
+		else{
+			player2 = new HumanPlayer('O');
+			System.out.println("Invalid input for player2 type. Options are \"Human\", \"RandomComputerPlayer\", and \"IntelligentComputerPlayer\".");
+		}
+		
 		while(game.power(true)) {
 			//PLAYER 1
-			if(args[0].equalsIgnoreCase("Human")) {
-				Player humanPlayer = new HumanPlayer('X');
-				String userInput = humanPlayer.getMove(game);
-				game.rowInput(userInput);
-				game.colInput(userInput);
-				game.switchGamePiece(" X", game.rowInput(userInput), game.colInput(userInput));
-			}
-			else if(args[0].equalsIgnoreCase("RandomComputerPlayer")) {
-				Player randomComputerPlayer = new RandomComputerPlayer('X');
-				String userInput = randomComputerPlayer.getMove(game);
-				game.rowInput(userInput);
-				game.colInput(userInput);
-			}
-			else if(args[0].equalsIgnoreCase("IntelligentComputerPlayer")) {
-				//Player intelligentComputerPlayer = new IntelligentComputerPlayer('X');
-			}
-			else {
-				System.out.println("Usage: java Reversi [PLAYER1] [PLAYER2]");
-				System.exit(0);
-			}
+			String userInput = player1.getMove(game);
+			game.rowInput(userInput);
+			game.colInput(userInput);
 			game.board();
 			
 			//PLAYER 2
-			if(args[1].equalsIgnoreCase("Human")) {
-				Player humanPlayer = new HumanPlayer('O');
-				String userInput = humanPlayer.getMove(game);
-				game.rowInput(userInput);
-				game.colInput(userInput);
-				game.switchGamePiece(" O", game.rowInput(userInput), game.colInput(userInput));
-			}
-			else if(args[1].equalsIgnoreCase("RandomComputerPlayer")) {
-				Player randomComputerPlayer = new RandomComputerPlayer('O');
-				String userInput = randomComputerPlayer.getMove(game);
-				game.rowInput(userInput);
-				game.colInput(userInput);
-			}
-			else if(args[1].equalsIgnoreCase("IntelligentComputerPlayer")) {
-				//Player intelligentComputerPlayer = new IntelligentComputerPlayer('X');
-			}
-			else {
-				System.out.println("Usage: java Reversi [PLAYER1] [PLAYER2]");
-				System.exit(0);
-			}
+			userInput = player2.getMove(game);
+			game.rowInput(userInput);
+			game.colInput(userInput);
 			game.board();
+			
 		}
 	}
 }
