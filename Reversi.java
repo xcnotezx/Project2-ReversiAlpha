@@ -1,7 +1,6 @@
-/*
- *to hold a Reversi board
+/**
+ * Represents a specific game of Reversi
  */
-import java.util.Scanner;
 public class Reversi implements Board {
 	
 	protected String[][] grid = new String[Board.rows][Board.cols];
@@ -14,19 +13,23 @@ public class Reversi implements Board {
 	/**
 	 * Turn on OR off game
 	 */
-	@Override
 	public boolean power(boolean p){
 		this.power = p;
 		return this.power;
 	}
 	
-	//intro
+	/**
+	 * Prints out introduction message to Reversi game.
+	 */
 	@Override
 	public void intro() {
 		System.out.println("\nWelcome to Reversi! Moves should be entered in \"[row] [column]\" format.\n");
 	}
 
-	//create grid OR board
+	/**
+	 * Constructs a new Board object for the game Reversi with the size
+	 * determined in the Board class.
+	 */
 	@Override
 	public void board() {
 		this.grid = new String[Board.rows][Board.cols];
@@ -569,7 +572,16 @@ public class Reversi implements Board {
 		    }
 		}
 	}
-	//row input
+	/**
+	 * Parses a string in the format specified in the
+	 * Player class and returns an integer representation
+	 * of the row of the board specified
+	 * 
+	 * @param 	r	String in the format specified by the
+	 * 				getMove() method in the Player class
+	 * @return		Returns an integer representation of
+	 * 				the row specified by the String input
+	 */
 	@Override
 	public int rowInput(String r) {
 		if(r.equals("")) {
@@ -581,8 +593,15 @@ public class Reversi implements Board {
 			return this.rowInput;
 		}
 	}
-	//col input
-	@Override
+	/**
+	 * Checks to see if the specified player is making a legal
+	 * move. Returns true if they are and false if not.
+	 * 
+	 * @param row	Row that the move is made to
+	 * @param col	Column that the move is made to
+	 * @param move	Player making the move
+	 * @return		True if move is legal, false otherwise
+	 */	@Override
 	public int colInput(String c) {
 		if(c.equals("")) {
 			this.colInput = 0;
@@ -595,13 +614,29 @@ public class Reversi implements Board {
 			
 	}
 	
-	//is the cpu making legal moves
+	/**
+	 * Checks to see if the specified player is making a legal
+	 * move. Returns true if they are and false if not.
+	 * 
+	 * @param row	Row that the move is made to
+	 * @param col	Column that the move is made to
+	 * @param move	Player making the move
+	 * @return		True if move is legal, false otherwise
+	 */
 	@Override
 	public boolean isLegalMove(int row, int col, char move) {
 		boolean isMoveLegal = true;
 		return isMoveLegal;
 	}
-	
+	/**
+	 * Executes the Reversi game in the console. Arguments determine
+	 * which players are playing in the given game.
+	 * @param args	String array of which players are playing in the
+	 * 				game. Two inputs are expected. Valid inputs are
+	 * 				"Human", "RandomComputerPlayer", and
+	 * 				"IntelligentComputerPlayer". Inputs are not case
+	 * 				sensitive.
+	 */
 	public static void main (String[] args) {
 		
 		Reversi game = new Reversi();
@@ -648,3 +683,4 @@ public class Reversi implements Board {
 		}
 	}
 }
+
