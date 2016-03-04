@@ -44,8 +44,13 @@ We have implemented an "Intelligent Computer Player" class. This class determine
 moves to make by assigning values to each location on the board and moving to whatever
 legal move has the highest value. In the event of a tie of highest value, the program
 randomly determines which of those locations to pick. The values are given as follows:
+
 Corners...................4 points
+
 Edges.....................3 points
+
 Next innermost locations..2 points
+
 Next innermost locations..1 point
+
 Innermost locations.......0 points
