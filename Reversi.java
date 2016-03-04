@@ -286,7 +286,29 @@ public class Reversi implements Board {
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 1 && gridCols == 5) || (gridRows == 1 && gridCols == 3) || (gridRows == 2 && gridCols == 2) || (gridRows == 3 && gridCols == 1) || (gridRows == 5 && gridCols == 3) || (gridRows == 4 && gridCols == 4)) {
+		    				this.grid[gridRows][gridCols] = " _";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else {
+			    			this.grid[gridRows][gridCols] = " .";
+			    			System.out.print(this.grid[gridRows][gridCols]);
+			    		}
+		    		}
+		    		else if(this.turns >= 3 && (rowInput == 4 && colInput == 6) && level == 1) {
+		    			if(gridRows == 3 && gridCols == 4) {
+		    				this.grid[gridRows][gridCols] = player1;
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 3 && gridCols == 3) || (gridRows == 2 && gridCols == 3) || (gridRows == 4 && gridCols == 3) || (gridRows == 3 && gridCols == 2)) {
+		    				this.grid[gridRows][gridCols] = player1;
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 2 && gridCols == 4) || (gridRows == 4 && gridCols == 2)) {
 		    				this.grid[gridRows][gridCols] = player2;
+			    			System.out.print(this.grid[gridRows][gridCols]);
+		    			}
+		    			else if((gridRows == 4 && gridCols == 4) || (gridRows == 2 && gridCols == 2)) {
+		    				this.grid[gridRows][gridCols] = " _";
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else {
@@ -678,6 +700,9 @@ public class Reversi implements Board {
 			}
 			else if(args[0].equalsIgnoreCase("RandomComputerPlayer")) {
 				Player randomComputerPlayer = new RandomComputerPlayer('X');
+				String userInput = randomComputerPlayer.getMove(game);
+				game.rowInput(userInput);
+				game.colInput(userInput);
 			}
 			else if(args[0].equalsIgnoreCase("IntelligentComputerPlayer")) {
 				//Player intelligentComputerPlayer = new IntelligentComputerPlayer('X');
@@ -698,6 +723,9 @@ public class Reversi implements Board {
 			}
 			else if(args[1].equalsIgnoreCase("RandomComputerPlayer")) {
 				Player randomComputerPlayer = new RandomComputerPlayer('O');
+				String userInput = randomComputerPlayer.getMove(game);
+				game.rowInput(userInput);
+				game.colInput(userInput);
 			}
 			else if(args[1].equalsIgnoreCase("IntelligentComputerPlayer")) {
 				//Player intelligentComputerPlayer = new IntelligentComputerPlayer('X');
