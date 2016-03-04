@@ -1,6 +1,7 @@
-/**
- * Represents a specific game of Reversi
+/*
+ *to hold a Reversi board
  */
+import java.util.Scanner;
 public class Reversi implements Board {
 	
 	protected String[][] grid = new String[Board.rows][Board.cols];
@@ -9,13 +10,30 @@ public class Reversi implements Board {
 	protected int turns = 0;
 	protected boolean power = false;
 	protected int level = 1;
+	protected String player1 = " X";
+	protected String player2 = " O";
 	
 	/**
 	 * Turn on OR off game
 	 */
+	@Override
 	public boolean power(boolean p){
 		this.power = p;
 		return this.power;
+	}
+	
+	/**
+	 * Switch Player 1 to Player 2, vice versa
+	 */
+	public void switchGamePiece(String p, int rowInput, int colInput) {
+		if(p.equals(" X")) {
+			this.player1 = Board.player2;
+			this.player2 = Board.player1;
+		}
+		else if(p.equals(" O")){
+			this.player1 = Board.player1;
+			this.player2 = Board.player2;
+		}
 	}
 	
 	/**
@@ -38,6 +56,9 @@ public class Reversi implements Board {
 		if(!(rowInput == 0 && colInput == 0)) {
 			this.turns++;
 		}
+		else {
+			
+		}
     	//COL OF NUMBERS
     	System.out.println("\n  1 2 3 4 5 6 7 8");
 		for(int gridRows = 0; gridRows < Board.rows; gridRows++) {
@@ -55,11 +76,11 @@ public class Reversi implements Board {
 		    		//INTIAL PIECES
 		    		if(this.turns == 0) {
 			    		if((gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
-			    			this.grid[gridRows][gridCols] = " X";
+			    			this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 			    		else if((gridRows == 3 && gridCols == 3) || (gridRows == 4 && gridCols == 2)) {
-			    			this.grid[gridRows][gridCols] = " O";
+			    			this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 			    		//LEGAL TURNS
@@ -75,15 +96,15 @@ public class Reversi implements Board {
 		    		//AFTER 1ST TURN
 		    		if(this.turns >= 1 && (rowInput == 3 && colInput == 5)) {
 			    		if((gridRows == 2 && gridCols == 3)) {
-			    			this.grid[gridRows][gridCols] = " X";
+			    			this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 			    		else if((gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3) || (gridRows == 3 && gridCols == 3)) {
-			    			this.grid[gridRows][gridCols] = " X";
+			    			this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 			    		else if(gridRows == 4 && gridCols == 2) {
-			    			this.grid[gridRows][gridCols] = " O";
+			    			this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 			    		//LEGAL MOVES
@@ -99,15 +120,15 @@ public class Reversi implements Board {
 		    		//AFTER 2ND TURN
 		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 4) && level == 1) {
 		    			if(gridRows == 2 && gridCols == 2) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 2)) {
-			    			this.grid[gridRows][gridCols] = " O";
+			    			this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    			else if((gridRows == 2 && gridCols == 3) || (gridRows == 4 && gridCols == 3) || (gridRows == 3 && gridCols == 3)) {
-			    			this.grid[gridRows][gridCols] = " X";
+			    			this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    			else if((gridRows == 1 && gridCols == 1) || (gridRows == 2 && gridCols == 1) || (gridRows == 3 && gridCols == 1) || (gridRows == 4 && gridCols == 1) || (gridRows == 5 && gridCols == 1)) {
@@ -121,15 +142,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 3 && (rowInput == 2 && colInput == 3) && level == 1) {
 		    			if(gridRows == 1 && gridCols == 1) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 2) || (gridRows == 2 && gridCols == 3) || (gridRows == 3 && gridCols == 3) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 1 && gridCols == 2) || (gridRows == 1 && gridCols == 4) || (gridRows == 2 && gridCols == 4) || (gridRows == 3 && gridCols == 4) || (gridRows == 4 && gridCols == 4) || (gridRows == 5 && gridCols == 4)) {
@@ -143,15 +164,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 3 && (rowInput == 3 && colInput == 3) && level == 1) {
 		    			if(gridRows == 2 && gridCols == 1) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 2) || (gridRows == 2 && gridCols == 3) || (gridRows == 3 && gridCols == 2) || (gridRows == 3 && gridCols == 3) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 1 && gridCols == 2) || (gridRows == 2 && gridCols == 4) || (gridRows == 4 && gridCols == 4)) {
@@ -165,15 +186,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 3 && (rowInput == 4 && colInput == 3) && level == 1) {
 		    			if(gridRows == 3 && gridCols == 1) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 3 && gridCols == 3) || (gridRows == 2 && gridCols == 3) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 2) || (gridRows == 4 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 0) || (gridRows == 4 && gridCols == 0) || (gridRows == 2 && gridCols == 4) || (gridRows == 4 && gridCols == 4)) {
@@ -187,15 +208,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 3 && (rowInput == 5 && colInput == 3) && level == 1) {
 		    			if(gridRows == 4 && gridCols == 1) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 2) || (gridRows == 4 && gridCols == 3) || (gridRows == 3 && gridCols == 2) || (gridRows == 3 && gridCols == 3) || (gridRows == 2 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if(gridRows == 2 && gridCols == 2) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 5 && gridCols == 2) || (gridRows == 4 && gridCols == 4) || (gridRows == 2 && gridCols == 4)) {
@@ -209,15 +230,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 3 && (rowInput == 6 && colInput == 3) && level == 1) {
 		    			if(gridRows == 5 && gridCols == 1) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 2) || (gridRows == 4 && gridCols == 3) || (gridRows == 3 && gridCols == 3) || (gridRows == 2 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 2 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 5 && gridCols == 2) || (gridRows == 5 && gridCols == 4) || (gridRows == 4 && gridCols == 4) || (gridRows == 3 && gridCols == 4) || (gridRows == 2 && gridCols == 4) || (gridRows == 1 && gridCols == 4)) {
@@ -231,15 +252,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 6) && level == 1) {
 		    			if(gridRows == 2 && gridCols == 4) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 3) || (gridRows == 4 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 3) || (gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 5) || (gridRows == 3 && gridCols == 4) || (gridRows == 5 && gridCols == 2) || (gridRows == 4 && gridCols == 1)) {
@@ -253,19 +274,19 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 3 && (rowInput == 3 && colInput == 7) && level == 1) {
 		    			if(gridRows == 2 && gridCols == 5) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 4) || (gridRows == 2 && gridCols == 3) || (gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 3) || (gridRows == 4 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 1 && gridCols == 5) || (gridRows == 1 && gridCols == 3) || (gridRows == 2 && gridCols == 2) || (gridRows == 3 && gridCols == 1) || (gridRows == 5 && gridCols == 3) || (gridRows == 4 && gridCols == 4)) {
-		    				this.grid[gridRows][gridCols] = " _";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else {
@@ -275,15 +296,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 5 && colInput == 6) && level == 1) {
 		    			if(gridRows == 4 && gridCols == 4) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 3 && gridCols == 3) || (gridRows == 2 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 5 && gridCols == 1) || (gridRows == 5 && gridCols == 2) || (gridRows == 5 && gridCols == 3) || (gridRows == 5 && gridCols == 4) || (gridRows == 5 && gridCols == 5)) {
@@ -299,15 +320,15 @@ public class Reversi implements Board {
 		    		else if(this.turns >= 1 && (rowInput == 4 && colInput == 6)) {
 		    			level = 2;
 		    			if((gridRows == 3 && gridCols == 4)) {
-			    			this.grid[gridRows][gridCols] = " X";
+			    			this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3) || (gridRows == 3 && gridCols == 3)) {
-			    			this.grid[gridRows][gridCols] = " X";
+			    			this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    			else if(gridRows == 4 && gridCols == 2) {
-			    			this.grid[gridRows][gridCols] = " O";
+			    			this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    			//LEGAL MOVES
@@ -322,15 +343,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 4) && level == 2) {
 		    			if(gridRows == 2 && gridCols == 2) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if(gridRows == 3 && gridCols == 2 || gridRows == 4 && gridCols == 2) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 3) || (gridRows == 3 && gridCols == 4) || (gridRows == 4 && gridCols == 3)) {
-			    			this.grid[gridRows][gridCols] = " X";
+			    			this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    			else if((gridRows == 1 && gridCols == 1) || (gridRows == 2 && gridCols == 1) || (gridRows == 3 && gridCols == 1) || (gridRows == 4 && gridCols == 1) || (gridRows == 5 && gridCols == 1)) {
@@ -344,15 +365,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 3 && colInput == 6) && level == 2) {
 		    			if(gridRows == 2 && gridCols == 4) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 3) || (gridRows == 4 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 4) || (gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 1 && gridCols == 4) || (gridRows == 2 && gridCols == 3) || (gridRows == 5 && gridCols == 2) || (gridRows == 4 && gridCols == 1)) {
@@ -366,15 +387,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 5 && colInput == 6) && level == 2) {
 		    			if(gridRows == 4 && gridCols == 4) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 3 && gridCols == 3) || (gridRows == 3 && gridCols == 4)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 5 && gridCols == 1) || (gridRows == 5 && gridCols == 2) || (gridRows == 5 && gridCols == 3) || (gridRows == 5 && gridCols == 4) || (gridRows == 5 && gridCols == 5)) {
@@ -390,15 +411,15 @@ public class Reversi implements Board {
 		    		else if(this.turns >= 1 && (rowInput == 5 && colInput == 3)) {
 		    			level = 3;
 		    			if(gridRows == 4 && gridCols == 1) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3) || (gridRows == 4 && gridCols == 2)) {
-			    			this.grid[gridRows][gridCols] = " X";
+			    			this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if(gridRows == 3 && gridCols == 3) {
-			    			this.grid[gridRows][gridCols] = " O";
+			    			this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    			//LEGAL MOVES
@@ -413,15 +434,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 4 && colInput == 3) && level == 3) {
 		    			if(gridRows == 3 && gridCols == 1) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 3 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 1) || (gridRows == 4 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 0) || (gridRows == 2 && gridCols == 1) || (gridRows == 2 && gridCols == 2) || (gridRows == 2 && gridCols == 3) || (gridRows == 2 && gridCols == 4)) {
@@ -435,15 +456,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 3) && level == 3) {
 		    			if(gridRows == 5 && gridCols == 1) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 2) || (gridRows == 3 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 1) || (gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 6 && gridCols == 1)  || (gridRows == 5 && gridCols == 2) || (gridRows == 3 && gridCols == 4) || (gridRows == 2 && gridCols == 3)) {
@@ -457,15 +478,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 5) && level == 3) {
 		    			if(gridRows == 5 && gridCols == 3) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 3) || (gridRows == 4 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 1) || (gridRows == 4 && gridCols == 2) || (gridRows == 3 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 4) || (gridRows == 3 && gridCols == 4) || (gridRows == 4 && gridCols == 4) || (gridRows == 5 && gridCols == 4) || (gridRows == 6 && gridCols == 4)) {
@@ -481,15 +502,15 @@ public class Reversi implements Board {
 		    		else if(this.turns >= 1 && (rowInput == 6 && colInput == 4)) {
 		    			level = 4;
 		    			if(gridRows == 5 && gridCols == 2) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 4 && gridCols == 3) || (gridRows == 4 && gridCols == 2)) {
-			    			this.grid[gridRows][gridCols] = " X";
+			    			this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if(gridRows == 3 && gridCols == 3) {
-			    			this.grid[gridRows][gridCols] = " O";
+			    			this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 			    		}
 		    			//LEGAL MOVES
@@ -504,15 +525,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 4 && colInput == 3) && level == 4) {
 		    			if(gridRows == 3 && gridCols == 1) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 3 && gridCols == 2) || (gridRows == 3 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 2) || (gridRows == 4 && gridCols == 3) || (gridRows == 5 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 0) || (gridRows == 2 && gridCols == 1) || (gridRows == 2 && gridCols == 2) || (gridRows == 2 && gridCols == 3) || (gridRows == 2 && gridCols == 4)) {
@@ -526,15 +547,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 3) && level == 4) {
 		    			if(gridRows == 5 && gridCols == 1) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 2) || (gridRows == 3 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 5 && gridCols == 2) || (gridRows == 4 && gridCols == 3) || (gridRows == 3 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 5 && gridCols == 0) || (gridRows == 4 && gridCols == 1) || (gridRows == 3 && gridCols == 4) || (gridRows == 2 && gridCols == 3)) {
@@ -548,15 +569,15 @@ public class Reversi implements Board {
 		    		}
 		    		else if(this.turns >= 2 && (rowInput == 6 && colInput == 5) && level == 4) {
 		    			if(gridRows == 5 && gridCols == 3) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 4 && gridCols == 3) || (gridRows == 3 && gridCols == 3)) {
-		    				this.grid[gridRows][gridCols] = " O";
+		    				this.grid[gridRows][gridCols] = player2;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 5 && gridCols == 2) || (gridRows == 4 && gridCols == 2) || (gridRows == 3 && gridCols == 2)) {
-		    				this.grid[gridRows][gridCols] = " X";
+		    				this.grid[gridRows][gridCols] = player1;
 			    			System.out.print(this.grid[gridRows][gridCols]);
 		    			}
 		    			else if((gridRows == 2 && gridCols == 4) || (gridRows == 3 && gridCols == 4) || (gridRows == 4 && gridCols == 4) || (gridRows == 5 && gridCols == 4) || (gridRows == 6 && gridCols == 4)) {
@@ -572,6 +593,7 @@ public class Reversi implements Board {
 		    }
 		}
 	}
+	
 	/**
 	 * Parses a string in the format specified in the
 	 * Player class and returns an integer representation
@@ -593,6 +615,7 @@ public class Reversi implements Board {
 			return this.rowInput;
 		}
 	}
+	
 	/**
 	 * Checks to see if the specified player is making a legal
 	 * move. Returns true if they are and false if not.
@@ -601,7 +624,8 @@ public class Reversi implements Board {
 	 * @param col	Column that the move is made to
 	 * @param move	Player making the move
 	 * @return		True if move is legal, false otherwise
-	 */	@Override
+	 */
+	@Override
 	public int colInput(String c) {
 		if(c.equals("")) {
 			this.colInput = 0;
@@ -628,6 +652,7 @@ public class Reversi implements Board {
 		boolean isMoveLegal = true;
 		return isMoveLegal;
 	}
+	
 	/**
 	 * Executes the Reversi game in the console. Arguments determine
 	 * which players are playing in the given game.
@@ -649,6 +674,7 @@ public class Reversi implements Board {
 				String userInput = humanPlayer.getMove(game);
 				game.rowInput(userInput);
 				game.colInput(userInput);
+				game.switchGamePiece(" X", game.rowInput(userInput), game.colInput(userInput));
 			}
 			else if(args[0].equalsIgnoreCase("RandomComputerPlayer")) {
 				Player randomComputerPlayer = new RandomComputerPlayer('X');
@@ -668,6 +694,7 @@ public class Reversi implements Board {
 				String userInput = humanPlayer.getMove(game);
 				game.rowInput(userInput);
 				game.colInput(userInput);
+				game.switchGamePiece(" O", game.rowInput(userInput), game.colInput(userInput));
 			}
 			else if(args[1].equalsIgnoreCase("RandomComputerPlayer")) {
 				Player randomComputerPlayer = new RandomComputerPlayer('O');
@@ -683,4 +710,3 @@ public class Reversi implements Board {
 		}
 	}
 }
-
