@@ -88,19 +88,19 @@ public class HumanPlayer extends Player {
 								}//Check move legality
 							}
 							else {
-								System.out.println("Invalid input. Third Character is " + input.charAt(2) + ". Please try again.");
+								System.out.println("Invalid input. Please try again.");
 							}//Check charAt(2)
 						}
 						else {
-							System.out.println("Invalid input. Second character is " + input.charAt(1) + ". Please try again.");
+							System.out.println("Invalid input. Please try again.");
 						}//Check charAt(1)
 					}
 					else {
-						System.out.println("Invalid input. First character is" + input.charAt(0) + ". Please try again.");
+						System.out.println("Invalid input. Please try again.");
 					}//Check charAt(0)
 				}
 				else {
-					System.out.println("Invalid input. Input is " + input.length() + " long. Please try again.");
+					System.out.println("Invalid input. Please try again.");
 				}//Check Length
 			} while(isValidAndLegal == false);
 			
