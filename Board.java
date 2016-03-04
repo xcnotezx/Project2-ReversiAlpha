@@ -12,12 +12,27 @@ public interface Board {
 	 * index of the last column of the game board.
 	 */
 	final int cols = 8;
-
+	
+	/**
+	 * Player 1
+	 */
+	final String player1 = " X";
+	
+	/**
+	 * Player 1
+	 */
+	final String player2 = " O";
+	
 	/**
 	 * Turn on OR off game
 	 */
 	public abstract boolean power(boolean p);
 	
+	/**
+	 * Switch Player 1 to Player 2
+	 */
+	public abstract void switchGamePiece(String p, int rowInput, int colInput);
+
 	/**
 	 * Prints an introductory message for the game. The
 	 * message is unique to the game that is being
