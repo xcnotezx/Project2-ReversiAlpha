@@ -35,7 +35,9 @@ To play the game as a computer player, follow the instructions on the screen.
 
 Known errors:
 
-
+We aren't aware of any errors as of yet. Any improper input *should* be handled properly, either
+by prompting for new input or by exiting the program, whichever makes more sense. Please do let
+us know of any problems that you face.
 
 Extra credit:
 
