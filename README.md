@@ -46,18 +46,18 @@ legal move has the highest value. In the event of a tie of highest value, the pr
 randomly determines which of those locations to pick. The values are placed on the grid
 as follows:
 
-5   4   4   4   4   4   4   5
+5	4	4	4	4	4	4	5
 
-4   3   3   3   3   3   3   4
+4	3	3	3	3	3	3	4
 
-4   3   2   2   2   2   3   4
+4	3	2	2	2	2	3	4
 
-4   3   2   1   1   2   3   4 
+4	3	2	1	1	2	3	4
 
-4   3   2   1   1   2   3   4
+4	3	2	1	1	2	3	4
 
-4   3   2   2   2   2   3   4
+4	3	2	2	2	2	3	4
 
-4   3   3   3   3   3   3   4
+4	3	3	3	3	3	3	4
 
-5   4   4   4   4   4   4   5
+5	4	4	4	4	4	4	5
